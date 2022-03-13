@@ -25,12 +25,13 @@ def matrix_check(dp,n):
             else:
                 c = 1 
     if c == 0 :
-        print("                             ==== * HURRAY * ====")
-        
+        print(" "*35,"==== * HURRAY * ====")
+# DE FUNCTION       
 def DE(dp,n,row):
     dp[-row] = [" "]*n
     dp[-row][0] = dp[-row][-1] = "W"
-
+    
+# DS FUNCTION
 def DS(dp,n,row):
     # UPPER ROW
     if dp[-row-1][ball_position] != "W":
@@ -53,7 +54,7 @@ def DS(dp,n,row):
         dp[-row][ball_position+1] = " "
     if dp[-row][ball_position-1] != "W":
         dp[-row][ball_position-1] = " "
-
+#B FUNCTION
 def B(dp,n):
     if dp[-1][ball_position:n].count("_") == dp[-1][:ball_position].count("_"):
         for i in range(ball_position+1,n-1):
@@ -65,18 +66,22 @@ def B(dp,n):
             if dp[-1][j] != "_":
                 dp[-1][j] = "_"
                 break
-            
-                    
-            
-    
 l = list(map(str,input("Enter the brick's position and the brick type: ").split()))
-dp[int(l[0])][int(l[1])] = l[2]
+if (int(l[0]) in range(1,n) and int(l[1]) in range(1,n)):
+    dp[int(l[0])][int(l[1])] = l[2]
+else:
+    print(" "*10,"WRONG INPUT :- ENTER THE INDEX VALUES IN RANGE OF 1 TO",n-1)
 while True:
     value = input("Do you want to continue Y/N: ")
     if value == "Y":
         l = list(map(str,input("Enter the brick's position and the brick type: ").split()))
-        dp[int(l[0])][int(l[1])] = l[2]
-    else:
+        if (int(l[0]) in range(1,n)and int(l[1]) in range(1,n)):
+            dp[int(l[0])][int(l[1])] = l[2]
+        else:
+            print(" "*10,"WRONG INPUT :- ENTER THE INDEX VALUES IN RANGE OF 1 TO",n-1)
+    elif value != "N":
+        print(" "*10,"OPTION ERROR :- CHOOSE CORRECT OPTION")
+    elif value == "N":
         ball_count = int(input("Enter The Ball Count: "))
         for i in range(n):
             print(*dp[i])
@@ -84,12 +89,14 @@ while True:
 print("Ball Count",ball_count)
 while True:
     if ball_count == 0:
-        print("                              ==== * GAME OVER * ===")
+        print(" "*35,"==== * GAME OVER * ====")
         break
     else:
         direction = input("Enter the Direction: ")
+        if direction not in "ST,st,LD,ld,RD,rd":
+            print("Select Valid Options ST/st , LD/ld , RD/rd")
         # STRAIGHT TRAVERSAL
-        if direction == "ST":
+        if direction in "ST,st":
             for row in range(2,n+1):
                 if dp[-row][ball_position] not in " W":
                     if dp[-row][ball_position] == "1" :
@@ -113,7 +120,7 @@ while True:
                 break
             print("Ball count",ball_count)
         # LEFT TRAVERSAL
-        elif direction == "LD":
+        elif direction in "LD,ld":
             hor = -n
             for ldia in range(2,(n//2)+2):
                 if dp[-ldia][ball_position-(ldia-1)] != " ":
@@ -163,8 +170,8 @@ while True:
             print("Ball Count",ball_count)
 
         #RIGHT TRAVERSAL
-        elif direction == "RD":
-            i = 1
+        elif direction in "RD,rd":
+            i = 1 ; hor = -n
             for rdia in range(2,(n//2)+2):
                 if dp[-rdia][ball_position+i] == " ":
                     i += 1
@@ -183,7 +190,6 @@ while True:
                     break
                 # HITTING WALL
                 elif dp[-rdia][ball_position+i] == "W":
-                    hor = -n
                     for hor in range(2,n):
                         if dp[-rdia][-hor] != " ":
                             if dp[-rdia][-hor] == "1":
