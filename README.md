@@ -2,7 +2,7 @@
 CODE FOR ZOHO QUESTION
 ============================================================= ***BALL_BRICK*** ================================================================
 This code is related to the Ball_Brick.Before going to the coding part , We should know the TERMS & Conditions as well as Passing Input details. Below instructions kept in mind while executing the program.
-1 ) G  -  Ground Level
+ 1 ) G  -  Ground Level
  2 ) W  -  Wall
  3 ) O  -  Ball
  4 ) _  -  Safe Plate
