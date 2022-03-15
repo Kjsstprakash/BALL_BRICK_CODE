@@ -72,10 +72,10 @@ while True:
     value = input("Do you want to continue Y/N: ")
     if value == "Y":
         l = list(map(str,input("Enter the brick's position and the brick type: ").split()))
-        if (int(l[0]) in range(1,n)and int(l[1]) in range(1,n)):
+        if (int(l[0]) in range(1,n-1)and int(l[1]) in range(1,n-1)):
             dp[int(l[0])][int(l[1])] = l[2]
         else:
-            print(" "*10,"WRONG INPUT :- ENTER THE INDEX VALUES IN RANGE OF 1 TO",n-1)
+            print(" "*10,"WRONG INPUT :- ENTER THE INDEX VALUES IN RANGE OF 1 TO",n-2)
     elif value != "N":
         print(" "*10,"OPTION ERROR :- CHOOSE CORRECT OPTION")
     elif value == "N":
