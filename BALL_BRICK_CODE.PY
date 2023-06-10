@@ -11,7 +11,9 @@ for row in range(n):
     dp[row][-1] = "W"
     dp[row][0]  = "W"
 dp[-1][ball_position] = "O"
+
 # MATRIX PRINTING & CHECKING
+
 def matrix_check(dp,n):
     global c
     c = 0
@@ -27,7 +29,8 @@ def matrix_check(dp,n):
 # DE FUNCTION       
 def DE(dp,n,row):
     dp[-row] = [" "]*n
-    dp[-row][0] = dp[-row][-1] = "W"   
+    dp[-row][0] = dp[-row][-1] = "W"
+    
 # DS FUNCTION
 def DS(dp,n,row):
     # UPPER ROW
